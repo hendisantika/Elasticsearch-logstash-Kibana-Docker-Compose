@@ -1,11 +1,10 @@
-version: '3.6'
 services:
   Elasticsearch:
-    image: elasticsearch:7.16.2
-    container_name: elasticsearch
+    image: elasticsearch:8.14.1
+    container_name: elasticsearch84
     restart: always
     volumes:
-    - elastic_data:/usr/share/elasticsearch/data/
+      - ./elastic_data:/usr/share/elasticsearch/data/
     environment:
       ES_JAVA_OPTS: "-Xmx256m -Xms256m"
       discovery.type: single-node    
@@ -16,8 +15,8 @@ services:
       - elk
 
   Logstash:
-    image: logstash:7.16.2
-    container_name: logstash
+    image: logstash:8.14.1
+    container_name: logstash84
     restart: always
     volumes:
     - ./logstash/:/logstash_dir
@@ -32,8 +31,8 @@ services:
       - elk
 
   Kibana:
-    image: kibana:7.16.2
-    container_name: kibana
+    image: kibana:8.14.1
+    container_name: kibana84
     restart: always       
     ports:
     - '5601:5601'
